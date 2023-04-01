@@ -13,8 +13,8 @@ export const login = createAsyncThunk("notes/login", async (values) => {
   const res = await axios.post(api+"/login", values);
   return res.data;
 });
-export const singUp = createAsyncThunk("notes/singUp", async (values) => {
-  const res = await axios.post(api+"/singUp", values);
+export const signUp = createAsyncThunk("notes/signUp", async (values) => {
+  const res = await axios.post(api+"/signUp", values);
   return res.data;
 });
 export const isRemember = createAsyncThunk("notes/isRemember", async () => {
@@ -59,7 +59,7 @@ const note = createSlice({
     selectedTag: "all",
     layout: true,
     authToken: "",
-    isSingUp: true,
+    isSignUp: true,
     user: null,
     remember: false,
     notes: [],
@@ -78,8 +78,8 @@ const note = createSlice({
       state.archive = !state.archive;
     },
 
-    setIsSingUp: (state) => {
-      state.isSingUp = !state.isSingUp;
+    setIsSignUp: (state) => {
+      state.isSignUp = !state.isSignUp;
     },
     changeRemember: (state) => {
       state.remember = !state.remember;
@@ -113,15 +113,15 @@ const note = createSlice({
     [addTag.fulfilled]: (state, action) => {
       state.tags = action.payload.tags;
     },
-    [singUp.pending]: (state, action) => {
+    [signUp.pending]: (state, action) => {
       state.loading = true;
     },
-    [singUp.fulfilled]: (state, action) => {
+    [signUp.fulfilled]: (state, action) => {
       state.loading = false;
-      state.isSingUp = false;
+      state.isSignUp = false;
     },
-    [singUp.rejected]: (state, action) => {
-      state.isSingUp = true;
+    [signUp.rejected]: (state, action) => {
+      state.isSignUp = true;
       state.error = action.payload;
     },
     [fetchNotes.pending]: (state, action) => {
@@ -189,7 +189,7 @@ const note = createSlice({
 });
 export const {
   changeRemember,
-  setIsSingUp,
+  setIsSignUp,
   archiveShow,
   searchNote,
   getAllNotes,

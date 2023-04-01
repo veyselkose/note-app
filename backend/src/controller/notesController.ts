@@ -23,7 +23,7 @@ const meInfo = async (req: Request, res: Response) => {
     }
 }
 
-const singUp = async (req: Request, res: Response) => {
+const signUp = async (req: Request, res: Response) => {
     const newUser = await User.create({
         username: req.body.username,
         email: req.body.email,
@@ -167,7 +167,7 @@ export {
     createNote,
     editNote,
     deleteNote,
-    singUp,
+    signUp,
     login,
     userUpdate,
     meInfo

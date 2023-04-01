@@ -2,7 +2,7 @@ require('dotenv').config();
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import { login, singUp, createNote, deleteNote, editNote, getAllNotes, userUpdate, meInfo } from "./controller/notesController"
+import { login, signUp, createNote, deleteNote, editNote, getAllNotes, userUpdate, meInfo } from "./controller/notesController"
 import { Note } from "./model/noteModel"
 import { items } from "./initialList";
 import bodyParser from "body-parser";
@@ -18,8 +18,8 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.json());
 
 mongoose
-  // .connect(`mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.rscmz7j.mongodb.net/?retryWrites=true&w=majority`)
-  .connect("mongodb://127.0.0.1:27017/myapp")
+  .connect(`mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.rscmz7j.mongodb.net/?retryWrites=true&w=majority`)
+  // .connect("mongodb://127.0.0.1:27017/myapp")
   .then(() => {
     console.log("DB CONNECTED!");
   })
@@ -43,7 +43,7 @@ mongoose
 // )
 
 // ! Users İşlemleri
-app.post("/singUp", singUp);
+app.post("/signUp", signUp);
 app.post("/meInfo", isLoggedIn, meInfo);
 app.post("/userUpdate", isLoggedIn, userUpdate);
 app.post("/login", login);

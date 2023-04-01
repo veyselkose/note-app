@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { singUp } from "./store/noteSlice";
+import { signUp } from "./store/noteSlice";
 
-function SingUp() {
+function SignUp() {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(singUp({ username: userName, password: password, email: email }));
+    dispatch(signUp({ username: userName, password: password, email: email }));
   };
   return (
     <form onSubmit={handleSubmit} className="auth-form">
@@ -43,9 +43,9 @@ function SingUp() {
           setPassword(e.target.value);
         }}
       />
-      <input type="submit" value="Sing Up" />
+      <input type="submit" value="Sign Up" />
     </form>
   );
 }
 
-export default SingUp;
+export default SignUp;
